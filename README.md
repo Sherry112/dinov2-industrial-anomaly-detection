@@ -3,9 +3,11 @@
 > Find and localize manufacturing defects after learning **only from normal
 > products**—no defect examples are used for fitting or threshold selection.
 
+[**Try the live demo →**](https://industrial-anomaly-detection-dinov2.streamlit.app/) — no installation required.
+
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-DINOv2-EE4C2C?logo=pytorch&logoColor=white)](https://pytorch.org/)
-[![Streamlit](https://img.shields.io/badge/Demo-Streamlit-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io/)
+[![Streamlit](https://img.shields.io/badge/Demo-Streamlit-FF4B4B?logo=streamlit&logoColor=white)](https://industrial-anomaly-detection-dinov2.streamlit.app/)
 [![Dataset](https://img.shields.io/badge/Benchmark-MVTec_AD-2563EB)](https://www.mvtec.com/research-teaching/datasets/mvtec-ad)
 
 This repository is an end-to-end, one-class visual inspection system built with
@@ -75,6 +77,13 @@ per-image latency, and cached detector-access time after each run.
 
 ## Try the interactive demo
 
+[Open the deployed app](https://industrial-anomaly-detection-dinov2.streamlit.app/), select a category,
+choose a normal and defective sample, and click **Analyze images**. Compare the
+decisions and heatmaps, then explore the benchmark results. The first analysis
+may take longer while the model loads.
+
+To run the demo locally:
+
 ```bash
 python -m venv .venv
 source .venv/bin/activate
@@ -128,14 +137,9 @@ inspect layer, coreset, validation, device, and output options.
 
 ## Test your own images
 
-The category must match the fitted checkpoint:
-
-```bash
-python test_custom_images.py custom_images/ --category transistor
-```
-
-Predictions are printed to the terminal; heatmap overlays and a JSON report are
-saved under `custom_predictions/`. Internet images can trigger high scores due
+Use the dashboard to select the matching category and upload your images.
+You can inspect heatmap overlays and download a JSON prediction report.
+Internet images can trigger high scores due
 to different cameras, crops, lighting, and backgrounds—an example of domain
 shift rather than necessarily a product defect.
 
@@ -160,7 +164,6 @@ pixel boundaries for very small defects.
 dino_anomaly/                 data, model, inference, and evaluation code
 streamlit_app.py              interactive multi-category demo
 main.py                       fit, evaluate, run, and benchmark CLI
-test_custom_images.py         inference for local images
 tests/                        model and Streamlit smoke tests
 docs/LEARNING_GUIDE.md        concepts explained from first principles
 docs/PORTFOLIO_CASE_STUDY.md  detailed employer-facing case study
